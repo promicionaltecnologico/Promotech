@@ -57,7 +57,7 @@ a {
 
 /* Campo de link separado em botões de produto */
 .btn-link-field {
-    display: block;
+    display: none;
     width: 100%;
     margin-top: 0.75rem;
     padding: 0.5rem 0;
@@ -81,6 +81,16 @@ a {
 .btn-link-field::before {
     content: "🔗 ";
     margin-right: 0.35rem;
+}
+
+/* Mostrar link apenas em produtos com desconto */
+.product-card:has(.badge-discount) .btn-link-field {
+    display: block;
+}
+
+/* Mostrar link em produtos com data-show-link="true" */
+.product-card[data-show-link="true"] .btn-link-field {
+    display: block;
 }
 
 /* =========================================
@@ -176,3 +186,4 @@ footer {
     color: var(--text-muted);
     font-size: 0.9rem;
 }
+
