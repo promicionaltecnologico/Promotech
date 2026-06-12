@@ -55,6 +55,34 @@ a {
     transform: translateY(-2px);
 }
 
+/* Campo de link separado em botões de produto */
+.btn-link-field {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-link-field:hover {
+    color: #f59e0b;
+    transform: translateX(4px);
+}
+
+.btn-link-field::before {
+    content: "🔗 ";
+    margin-right: 0.35rem;
+}
+
 /* =========================================
    ESTILOS DE IMAGENS
    ========================================= */
