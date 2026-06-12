@@ -26,6 +26,136 @@
             background-size: 50px 50px;
         }
 
+        /* LOGIN STYLES */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .login-box {
+            background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(15, 23, 42) 100%);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.1);
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-logo svg {
+            width: 32px;
+            height: 32px;
+            color: #22d3ee;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            border-radius: 0.5rem;
+            color: #f5e6ff;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: rgba(236, 72, 153, 0.8);
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: linear-gradient(135deg, rgb(219, 39, 119) 0%, rgb(236, 72, 153) 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .alert {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+            font-size: 0.875rem;
+        }
+
+        .alert.active {
+            display: block;
+        }
+
+        .alert-error {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(220, 38, 38, 0.5);
+            color: #ff6b6b;
+        }
+
+        #loginForm {
+            display: flex;
+        }
+
+        #adminContent {
+            display: none;
+        }
+
+        /* ADMIN STYLES */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -80,7 +210,7 @@
             gap: 1rem;
         }
 
-        .btn {
+        .btn-header {
             padding: 0.75rem 1.5rem;
             font-weight: 700;
             color: white;
@@ -110,6 +240,15 @@
 
         .btn-secondary:hover {
             background: rgba(150, 100, 100, 0.5);
+        }
+
+        .btn-logout {
+            background: rgba(220, 38, 38, 0.5);
+            border: 1px solid rgba(220, 38, 38, 0.7);
+        }
+
+        .btn-logout:hover {
+            background: rgba(220, 38, 38, 0.8);
         }
 
         .btn-danger {
@@ -243,13 +382,7 @@
             margin-bottom: 1.5rem;
         }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input, textarea {
+        textarea {
             width: 100%;
             padding: 0.75rem;
             background: rgba(0, 0, 0, 0.3);
@@ -257,18 +390,15 @@
             border-radius: 0.5rem;
             color: #f5e6ff;
             font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
             transition: border-color 0.3s;
         }
 
-        input:focus, textarea:focus {
+        textarea:focus {
             outline: none;
             border-color: rgba(236, 72, 153, 0.8);
             box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
         }
 
         .form-actions {
@@ -278,15 +408,19 @@
             margin-top: 2rem;
         }
 
+        .form-actions .btn-header {
+            padding: 0.75rem 1.5rem;
+        }
+
         /* Alert */
-        .alert {
+        .alert-admin {
             padding: 1rem;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
             display: none;
         }
 
-        .alert.active {
+        .alert-admin.active {
             display: block;
         }
 
@@ -343,114 +477,190 @@
                 width: 95%;
                 padding: 1rem;
             }
+
+            .login-box {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body class="grid-background">
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <svg class="logo-icon" fill="currentColor" viewBox="0 0 24 24">
+    <!-- LOGIN FORM -->
+    <div id="loginForm" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <svg fill="currentColor" viewBox="0 0 24 24">
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                 </svg>
-                <span class="neon-text">AFFILIATE PRO - ADMIN</span>
             </div>
+            <h2 class="login-title">AFFILIATE PRO</h2>
+            <p class="login-subtitle">Área Administrativa</p>
+            
+            <div class="alert alert-error" id="loginAlert"></div>
 
-            <div class="header-buttons">
-                <a href="index.html" class="btn btn-secondary btn-small">Voltar</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-            <h1 class="page-title">Gerenciador de Produtos</h1>
-
-            <!-- Alert -->
-            <div class="alert" id="alert"></div>
-
-            <!-- Products Section -->
-            <div class="products-section">
-                <div class="section-header">
-                    <h2 class="section-title">Produtos Cadastrados</h2>
-                    <button class="btn btn-neon btn-small" onclick="openAddModal()">+ Novo Produto</button>
-                </div>
-
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                </div>
-
-                <table id="productsTable" style="display: none;">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Preço</th>
-                            <th>Descrição</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productsBody">
-                    </tbody>
-                </table>
-
-                <div class="empty-state" id="emptyState" style="display: none;">
-                    <p>Nenhum produto cadastrado. Clique em "+ Novo Produto" para começar.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Novo Produto</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-
-            <form id="productForm" onsubmit="saveProduct(event)">
+            <form onsubmit="checkPassword(event)">
                 <div class="form-group">
-                    <label for="name">Nome do Produto *</label>
-                    <input type="text" id="name" required>
+                    <label for="password">Senha de Acesso</label>
+                    <input type="password" id="password" placeholder="Digite a senha" required autofocus>
                 </div>
-
-                <div class="form-group">
-                    <label for="price">Preço (R$) *</label>
-                    <input type="number" id="price" step="0.01" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="description">Descrição *</label>
-                    <textarea id="description" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="shortDescription">Descrição Curta</label>
-                    <input type="text" id="shortDescription">
-                </div>
-
-                <div class="form-group">
-                    <label for="imageUrl">URL da Imagem *</label>
-                    <input type="url" id="imageUrl" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="affiliateLink">Link de Afiliado *</label>
-                    <input type="url" id="affiliateLink" required>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
-                    <button type="submit" class="btn btn-neon">Salvar</button>
-                </div>
+                <button type="submit" class="btn">Entrar</button>
             </form>
+        </div>
+    </div>
+
+    <!-- ADMIN CONTENT -->
+    <div id="adminContent">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    <span class="neon-text">AFFILIATE PRO - ADMIN</span>
+                </div>
+
+                <div class="header-buttons">
+                    <a href="index.html" class="btn-header btn-secondary btn-small">Voltar</a>
+                    <button class="btn-header btn-logout btn-small" onclick="logout()">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="container">
+                <h1 class="page-title">Gerenciador de Produtos</h1>
+
+                <!-- Alert -->
+                <div class="alert alert-admin" id="alert"></div>
+
+                <!-- Products Section -->
+                <div class="products-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Produtos Cadastrados</h2>
+                        <button class="btn-header btn-neon btn-small" onclick="openAddModal()">+ Novo Produto</button>
+                    </div>
+
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <table id="productsTable" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsBody">
+                        </tbody>
+                    </table>
+
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <p>Nenhum produto cadastrado. Clique em "+ Novo Produto" para começar.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalTitle">Novo Produto</h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+
+                <form id="productForm" onsubmit="saveProduct(event)">
+                    <div class="form-group">
+                        <label for="name">Nome do Produto *</label>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Preço (R$) *</label>
+                        <input type="number" id="price" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição *</label>
+                        <textarea id="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shortDescription">Descrição Curta</label>
+                        <input type="text" id="shortDescription">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUrl">URL da Imagem *</label>
+                        <input type="url" id="imageUrl" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="affiliateLink">Link de Afiliado *</label>
+                        <input type="url" id="affiliateLink" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-header btn-secondary" onclick="closeModal()">Cancelar</button>
+                        <button type="submit" class="btn-header btn-neon">Salvar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
         let currentEditId = null;
+
+        // Verificar autenticação ao carregar
+        window.addEventListener('load', function() {
+            if (sessionStorage.getItem('adminAuthenticated') === 'true') {
+                showAdmin();
+            }
+        });
+
+        // Verificar senha
+        function checkPassword(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            
+            // ALTERE ESTA SENHA POR UMA SEGURA!
+            const correctPassword = 'admin123';
+
+            if (password === correctPassword) {
+                sessionStorage.setItem('adminAuthenticated', 'true');
+                showAdmin();
+            } else {
+                const alert = document.getElementById('loginAlert');
+                alert.textContent = '❌ Senha incorreta! Tente novamente.';
+                alert.classList.add('active');
+                document.getElementById('password').value = '';
+                setTimeout(() => alert.classList.remove('active'), 3000);
+            }
+        }
+
+        // Mostrar painel admin
+        function showAdmin() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            loadProducts();
+        }
+
+        // Fazer logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                sessionStorage.removeItem('adminAuthenticated');
+                document.getElementById('adminContent').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'flex';
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+            }
+        }
 
         // Carregar produtos
         async function loadProducts() {
@@ -483,8 +693,8 @@
                         <td>${product.description.substring(0, 50)}...</td>
                         <td>
                             <div class="product-actions">
-                                <button class="btn btn-neon btn-small" onclick="editProduct(${product.id})">Editar</button>
-                                <button class="btn btn-danger" onclick="deleteProduct(${product.id})">Deletar</button>
+                                <button class="btn-header btn-neon btn-small" onclick="editProduct(${product.id})">Editar</button>
+                                <button class="btn-header btn-danger" onclick="deleteProduct(${product.id})">Deletar</button>
                             </div>
                         </td>
                     </tr>
@@ -593,12 +803,9 @@
         function showAlert(message, type) {
             const alert = document.getElementById('alert');
             alert.textContent = message;
-            alert.className = `alert active alert-${type}`;
+            alert.className = `alert alert-admin active alert-${type}`;
             setTimeout(() => alert.classList.remove('active'), 3000);
         }
-
-        // Carregar produtos ao iniciar
-        loadProducts();
     </script>
 </body>
 </html>
