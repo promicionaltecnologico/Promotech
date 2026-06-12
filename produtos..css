@@ -1,0 +1,128 @@
+
+/* Estilos específicos para a Seção de Produtos */
+#produtos {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.grid-products {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+    .grid-products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-products {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.product-card {
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    border-color: #fbbf24;
+}
+
+.product-image-container {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background-color: #fbbf24;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.product-info {
+    padding: 1rem;
+}
+
+.product-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.product-title {
+    font-size: 1.125rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.product-price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: #fbbf24;
+}
+
+.product-old-price {
+    font-size: 0.875rem;
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+.btn-offer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #fbbf24;
+    color: #000;
+    font-weight: 700;
+    padding: 0.75rem;
+    border-radius: 9999px;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.btn-offer:hover {
+    background-color: #f59e0b;
+}
