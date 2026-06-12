@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop Pro Max 2024",
+    "price": "4999.99",
+    "description": "Laptop de alta performance com processador última geração, 16GB RAM, SSD 512GB. Ideal para profissionais e desenvolvedores.",
+    "shortDescription": "Laptop profissional com specs top",
+    "imageUrl": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/laptop-pro"
+  },
+  {
+    "id": 2,
+    "name": "Monitor 4K Ultra",
+    "price": "1299.99",
+    "description": "Monitor 4K 27 polegadas com taxa de atualização 144Hz, cores precisas e suporte HDR. Perfeito para design e gaming.",
+    "shortDescription": "Monitor 4K com 144Hz",
+    "imageUrl": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/monitor-4k"
+  },
+  {
+    "id": 3,
+    "name": "Teclado Mecânico RGB",
+    "price": "599.99",
+    "description": "Teclado mecânico com switches hot-swap, iluminação RGB personalizável e design ergonômico. Switches Gateron Brown.",
+    "shortDescription": "Teclado mecânico com RGB",
+    "imageUrl": "https://images.unsplash.com/photo-1587829191301-4b34e2b9a5a9?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/teclado-mecanico"
+  },
+  {
+    "id": 4,
+    "name": "Mouse Gamer Pro",
+    "price": "299.99",
+    "description": "Mouse gamer com sensor óptico 16000 DPI, 8 botões programáveis e peso ajustável. Tecnologia sem fio 2.4GHz.",
+    "shortDescription": "Mouse gamer com 16000 DPI",
+    "imageUrl": "https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/mouse-gamer"
+  },
+  {
+    "id": 5,
+    "name": "Headset Wireless Premium",
+    "price": "799.99",
+    "description": "Headset sem fio com cancelamento ativo de ruído, bateria 30h, som surround 7.1 e microfone com IA. Conexão Bluetooth 5.3.",
+    "shortDescription": "Headset wireless com noise cancelling",
+    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/headset-premium"
+  },
+  {
+    "id": 6,
+    "name": "Webcam 4K Pro",
+    "price": "449.99",
+    "description": "Webcam 4K com autofoco automático, campo de visão 90 graus e microfone estéreo integrado. Perfeita para streaming e conferências.",
+    "shortDescription": "Webcam 4K com autofoco",
+    "imageUrl": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop",
+    "affiliateLink": "https://example.com/webcam-4k"
+  }
+]
