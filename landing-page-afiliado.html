@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProdutivoMax - Domine sua Produtividade e Multiplique Resultados</title>
+    <meta name="description" content="Curso online completo de produtividade. Aprenda técnicas de profissionais para trabalhar menos e produzir mais. Acesso imediato!">
+    <meta property="og:title" content="ProdutivoMax - Revolucione sua Produtividade">
+    <meta property="og:description" content="Curso online exclusivo: técnicas comprovadas para aumentar produtividade em 300%. Acesso vitalício. Comece hoje mesmo!">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f3f4f6;
+            --white: #ffffff;
+            --text: #374151;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-header:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            margin-top: 60px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* ========== PROBLEMA-SOLUÇÃO ========== */
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .problem-text h3,
+        .solution-text h3 {
+            font-size: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .problem-text {
+            color: #dc2626;
+        }
+
+        .solution-text {
+            color: var(--secondary);
+        }
+
+        .problem-text ul,
+        .solution-text ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .problem-text li,
+        .solution-text li {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .problem-text li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .solution-text li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* ========== BENEFÍCIOS ========== */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--light);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ========== COMO FUNCIONA ========== */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--white);
+            border: 2px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 2rem;
+            background: var(--primary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .step-card h3 {
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ========== PROVA SOCIAL ========== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .author-role {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* ========== PREÇOS/OFERTA ========== */
+        .offer-box {
+            background: linear-gradient(135deg, var(--secondary) 0%, #059669 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .offer-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Poppins', sans-serif;
+            margin: 1rem 0;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* ========== FAQ ========== */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            padding-left: 1rem;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            user-select: none;
+        }
+
+        .faq-icon {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            margin-top: 1rem;
+            color: var(--text);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* ========== CTA FINAL ========== */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .final-cta h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            margin: 0 1rem;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+                margin-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .problem-solution {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .benefits-grid,
+            .steps-container,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            main {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .price-tag {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ========== ANIMAÇÕES ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <div class="logo">📈 ProdutivoMax</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#beneficios">Benefícios</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <a href="https://seulinkdeafiliado.com/produtivo-max" target="_blank" rel="nofollow noopener" class="cta-header">Começar Agora</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="badge">⚡ Acesso Imediato • Sem Pré-requisitos • Garantia 30 Dias</div>
+            <h1>Multiplique Sua Produtividade em 300% em Apenas 30 Dias</h1>
+            <p>Aprenda as mesmas técnicas que empresários, executivos e profissionais de elite usam para fazer mais trabalhando menos. Sem fórmulas mágicas, apenas estratégias comprovadas e práticas.</p>
+            
+            <div class="hero-cta">
+                <a href="https://seulinkdeafiliado.com/produtivo-max" target="_blank" rel="nofollow noopener" class="btn btn-primary">🚀 Quero Aumentar Minha Produtividade</a>
+                <a href="#beneficios" class="btn btn-secondary">Saiba Mais ↓</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Alunos Satisfeitos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Avaliação Média</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Histórias de Sucesso</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- PROBLEMA vs SOLUÇÃO -->
+        <section id="problema-solucao">
+            <div class="problem-solution">
+                <div class="problem-text">
+                    <h3>❌ Você está:</h3>
+                    <ul>
+                        <li>Trabalhando 12+ horas por dia mas não progredindo</li>
+                        <li>Deixando projetos importantes de lado</li>
+                        <li>Perdendo oportunidades por falta de tempo</li>
+                        <li>Chegando em casa exausto mas sem satisfação</li>
+                        <li>Vendo concorrentes avançarem mais rápido</li>
+                    </ul>
+                </div>
+                <div class="solution-text">
+                    <h3>✅ Com ProdutivoMax, você:</h3>
+                    <ul>
+                        <li>Trabalha 6-8 horas focadas e resulta mais</li>
+                        <li>Completa projetos críticos com antecedência</li>
+                        <li>Aproveita oportunidades que surgem</li>
+                        <li>Termina o dia com energia e satisfação</li>
+                        <li>Sai na frente da concorrência</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFÍCIOS -->
+        <section id="beneficios">
+            <h2>Por Que ProdutivoMax é Diferente?</h2>
+            <p class="section-subtitle">Não é apenas um curso. É uma transformação completa do seu jeito de trabalhar e viver.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>Recupere 20+ Horas por Semana</h3>
+                    <p>Aprenda técnicas para eliminar tarefas inúteis, automatizar processos e focar apenas no que realmente importa.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Domine Seu Foco Mental</h3>
+                    <p>Técnicas científicas para manter concentração profunda, combater distrações e entrar no "flow state" diariamente.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Resultados Mensuráveis</h3>
+                    <p>Dashboard prático para acompanhar progresso, identificar gargalos e otimizar continuamente seu desempenho.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Aumente sua Renda</h3>
+                    <p>Mais produtividade = mais tempo para tarefas que geram renda. Nossos alunos reportam aumento médio de 45% em ganhos.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏆</div>
+                    <h3>Alcance Suas Metas</h3>
+                    <p>Sistema comprovado para definir objetivos, manter motivação e finalmente alcançar aqueles sonhos adiados.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">😌</div>
+                    <h3>Qualidade de Vida</h3>
+                    <p>Trabalhe menos, viva mais. Tenha tempo para família, hobbies e autocuidado sem culpa ou arrependimento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+        <section id="como-funciona">
+            <h2>Como ProdutivoMax Funciona?</h2>
+            <p class="section-subtitle">Um sistema passo a passo, fácil de entender e implementar desde o dia 1.</p>
+            
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Análise Pessoal</h3>
+                    <p>Comece identificando seus principais pontos de desperdício de tempo e as razões por trás deles.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Aprenda a Sistemática</h3>
+                    <p>Domine os 7 pilares da produtividade através de vídeos curtos, práticos e implementáveis imediatamente.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Implemente com Suporte</h3>
+                    <p>Acesso a templates prontos, checklist e comunidade exclusiva para tirar dúvidas e receber feedback.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Meça e Otimize</h3>
+                    <p>Use ferramentas de tracking para acompanhar progresso, ajustar estratégias e manter o momentum.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3>Alcance Seus Objetivos</h3>
+                    <p>Com novo nível de produtividade, finalmente execute aqueles planos que sempre ficaram para depois.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">6</div>
+                    <h3>Viva Melhor</h3>
+                    <p>Desfrute do espaço mental e temporal para tudo que realmente importa na sua vida.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA SOCIAL / DEPOIMENTOS -->
+        <section id="depoimentos">
+            <h2>O Que Dizem Nossos Alunos?</h2>
+            <p class="section-subtitle">Histórias reais de pessoas que transformaram sua produtividade e vida.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Implementei no primeiro dia e já senti a diferença. Agora trabalho 6 horas focadas e consigo fazer o que fazia em 12. Melhor investimento que fiz esse ano!"</p>
+                    <div class="testimonial-author">— Carlos Silva</div>
+                    <div class="author-role">Empreendedor, São Paulo</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"Como mãe de 3 filhos e trabalhando full-time, eu era um caos. ProdutivoMax mudou completamente minha organização e agora tenho tempo de qualidade com minha família."</p>
+                    <div class="testimonial-author">— Ana Paula Costa</div>
+                    <div class="author-role">Executiva, Rio de Janeiro</div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <p>"O sistema de priorização sozinho valeu todo o investimento. Consegui tirar meus projetos do papel e triplicar meu faturamento em 90 dias."</p>
+                    <div class="testimonial-author">— Ricardo Mendes</div>
+                    <div class="author-role">Freelancer, Belo Horizonte</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OFERTA ESPECIAL -->
+        <div class="offer-box">
+            <div class="discount-badge">🎁 OFERTA ESPECIAL POR TEMPO LIMITADO</div>
+            <h3>Curso Completo + Bônus Exclusivos</h3>
+            <div class="old-price">Valor normal: R$ 297</div>
+            <div class="price-tag">Por apenas R$ 97</div>
+            <p style="margin-top: 1rem; opacity: 0.95;">✓ Acesso vitalício<br>✓ 100+ aulas em vídeo<br>✓ 30+ templates e recursos<br>✓ Comunidade privada<br>✓ Suporte direto por 90 dias<br>✓ Garantia de satisfação 100% ou seu dinheiro de volta!</p>
+            <br>
+            <a href="https://seulinkdeafiliado.com/produtivo-max" target="_blank" rel="nofollow noopener" class="btn btn-secondary">🚀 APROVEITAR OFERTA AGORA</a>
+        </div>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2>Perguntas Frequentes</h2>
+            <p class="section-subtitle">Tire suas dúvidas sobre o curso e programa.</p>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>Preciso ter experiência ou conhecimento prévio?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Não! ProdutivoMax é para qualquer pessoa que queira trabalhar de forma mais inteligente, independentemente do nível de experiência. Começamos do zero e evoluímos passo a passo.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>Por quanto tempo tenho acesso ao curso?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Acesso vitalício! Uma vez que compra, o curso é seu para sempre. Você pode assistir, revisar e praticar quantas vezes quiser, a qualquer hora.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>Quanto tempo leva para ver resultados?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Muitos alunos relatam melhorias já na primeira semana. Mas o ideal é seguir o programa completo de 30 dias para transformação real. Cada pessoa tem seu próprio ritmo.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>E se não gostar? Posso devolver?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sim! Temos garantia de satisfação 100% ou seu dinheiro de volta nos primeiros 30 dias. Sem perguntas, sem complicações. Se não achar útil, reembolsamos totalmente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>Vou receber certificado?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Sim! Ao completar o programa, você recebe um certificado digital que pode compartilhar no LinkedIn e currículum. Também ganha acesso à comunidade de alunos certificados.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>Preciso de algum software especial?</span>
+                    <span class="faq-icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Não! Todos os recursos, templates e ferramentas já estão inclusos e funcionam com o que você já possui. Fornecemos versões em Google Docs, Excel e PDF.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="final-cta">
+            <h2>Pronto Para Transformar Sua Produtividade?</h2>
+            <p>Não espere mais um dia sequer. Comece agora e veja a mudança em sua vida em apenas 7 dias. Centenas de pessoas estão colhendo os resultados. Você pode ser a próxima.</p>
+            <a href="https://seulinkdeafiliado.com/produtivo-max" target="_blank" rel="nofollow noopener" class="btn btn-secondary">✨ Começar Agora Por Apenas R$97</a>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Contato</a>
+        </div>
+        <p>&copy; 2026 ProdutivoMax. Todos os direitos reservados.</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">Este site contém links de afiliados. Ganharemos uma comissão se você clicar e fazer uma compra.</p>
+    </footer>
+
+    <script>
+        // Toggle FAQ Items
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+
+        // Smooth scroll links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
