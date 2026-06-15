@@ -1,8 +1,8 @@
 {
-  "name": "affiliate-store",
+  "name": "promo-tech",
   "version": "1.0.0",
   "type": "module",
-  "description": "Site de vendas de afiliados com tema cyberpunk",
+  "description": "Site de venda afiliado com tema cyberpunk",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
