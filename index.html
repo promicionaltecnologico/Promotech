@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promo Tech - Compre com Segurança</title>
+<style>
+body{font-family:Arial,sans-serif;background:#0f172a;color:#fff;margin:0}
+header{position:fixed;top:0;width:100%;background:#111827;padding:15px;z-index:100}
+.logo{font-size:24px;font-weight:bold;color:#22d3ee}
+nav a{color:#fff;text-decoration:none;margin:0 10px}
+.hero{padding:120px 20px 60px;text-align:center}
+.btn{display:inline-block;padding:12px 20px;background:#ec4899;color:#fff;text-decoration:none;border-radius:8px}
+.features,.products,.testimonials{padding:60px 20px}
+.features-grid,.products-grid{display:grid;gap:20px}
+.features-grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.products-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card,.product-card{background:#1e293b;padding:20px;border-radius:12px}
+.product-image img{width:100%;height:250px;object-fit:cover;border-radius:8px}
+.product-footer{display:flex;justify-content:space-between;align-items:center}
+.loading,.empty-state{text-align:center;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">⚡ Promo Tech</div>
+<nav>
+<a href="#produtos">Produtos</a>
+<a href="#vantagens">Vantagens</a>
+<a href="#avaliacoes">Avaliações</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>COMPRE COM CONFIANÇA</h1>
+<p>Produtos selecionados com os melhores links de afiliado.</p>
+<a href="#produtos" class="btn">Explorar Produtos</a>
+</section>
+
+<section id="vantagens" class="features">
+<h2>Por que escolher nossos produtos?</h2>
+<div class="features-grid">
+<div class="card"><h3>Performance</h3><p>Produtos bem avaliados.</p></div>
+<div class="card"><h3>Segurança</h3><p>Links confiáveis e seguros.</p></div>
+<div class="card"><h3>Compra Rápida</h3><p>Processo simples e rápido.</p></div>
+</div>
+</section>
+
+<section id="produtos" class="products">
+<h2>Catálogo</h2>
+
+<div class="loading" id="loading">Carregando...</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+<div class="empty-state" id="emptyState" style="display:none">
+Nenhum produto disponível.
+</div>
+</section>
+
+<section id="avaliacoes" class="testimonials">
+<h2>Avaliações</h2>
+<p>Clientes satisfeitos com nossas recomendações.</p>
+</section>
+
+<script>
+function loadProducts(){
+    const loading=document.getElementById('loading');
+    const productsGrid=document.getElementById('productsGrid');
+    const emptyState=document.getElementById('emptyState');
+
+    loading.style.display='block';
+
+    try{
+        const products=JSON.parse(localStorage.getItem('products')||'[]');
+
+        loading.style.display='none';
+
+        if(products.length===0){
+            emptyState.style.display='block';
+            return;
+        }
+
+        emptyState.style.display='none';
+
+        productsGrid.innerHTML=products.map(product=>`
+        <div class="product-card">
+            <div class="product-image">
+                <img src="${product.imageUrl}" alt="${product.name}">
+            </div>
+            <h3>${product.name}</h3>
+            <p>Produto recomendado</p>
+            <div class="product-footer">
+                <strong>R$ ${Number(product.price).toFixed(2)}</strong>
+                <a class="btn" href="${product.affiliateLink}" target="_blank">Ver Oferta</a>
+            </div>
+        </div>
+        `).join('');
+    }catch(e){
+        loading.style.display='none';
+        emptyState.style.display='block';
+    }
+}
+
+window.addEventListener('load',loadProducts);
+window.addEventListener('focus',loadProducts);
+</script>
+
+</body>
+</html>
