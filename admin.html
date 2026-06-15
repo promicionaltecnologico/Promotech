@@ -1,811 +1,300 @@
-hj<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - promotechbr</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, rgb(13, 0, 26) 0%, rgb(5, 5, 20) 50%, rgb(0, 13, 26) 100%);
-            color: #f5e6ff;
-            line-height: 1.6;
-        }
-
-        .grid-background {
-            background-image:
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* LOGIN STYLES */
-        .login-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 1rem;
-        }
-
-        .login-box {
-            background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(15, 23, 42) 100%);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.75rem;
-            padding: 2.5rem;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 0 40px rgba(255, 0, 255, 0.1);
-        }
-
-        .login-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .login-logo svg {
-            width: 32px;
-            height: 32px;
-            color: #22d3ee;
-        }
-
-        .login-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .login-subtitle {
-            text-align: center;
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.75rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.5rem;
-            color: #f5e6ff;
-            font-family: inherit;
-            transition: all 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: rgba(236, 72, 153, 0.8);
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: linear-gradient(135deg, rgb(219, 39, 119) 0%, rgb(236, 72, 153) 100%);
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-        }
-
-        .btn:hover {
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .alert {
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            display: none;
-            font-size: 0.875rem;
-        }
-
-        .alert.active {
-            display: block;
-        }
-
-        .alert-error {
-            background: rgba(220, 38, 38, 0.2);
-            border: 1px solid rgba(220, 38, 38, 0.5);
-            color: #ff6b6b;
-        }
-
-        #loginForm {
-            display: flex;
-        }
-
-        #adminContent {
-            display: none;
-        }
-
-        /* ADMIN STYLES */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
-            z-index: 50;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 64px;
-            padding: 0 1rem;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .logo-icon {
-            width: 24px;
-            height: 24px;
-            color: #22d3ee;
-        }
-
-        .neon-text {
-            font-weight: 700;
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-header {
-            padding: 0.75rem 1.5rem;
-            font-weight: 700;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-neon {
-            background: linear-gradient(135deg, rgb(219, 39, 119) 0%, rgb(236, 72, 153) 100%);
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-        }
-
-        .btn-neon:hover {
-            background: linear-gradient(135deg, rgb(236, 72, 153) 0%, rgb(244, 114, 182) 100%);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(100, 100, 100, 0.5);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(150, 100, 100, 0.5);
-        }
-
-        .btn-logout {
-            background: rgba(220, 38, 38, 0.5);
-            border: 1px solid rgba(220, 38, 38, 0.7);
-        }
-
-        .btn-logout:hover {
-            background: rgba(220, 38, 38, 0.8);
-        }
-
-        .btn-danger {
-            background: rgba(220, 38, 38, 0.5);
-            border: 1px solid rgba(220, 38, 38, 0.7);
-            font-size: 0.75rem;
-            padding: 0.5rem 1rem;
-        }
-
-        .btn-danger:hover {
-            background: rgba(220, 38, 38, 0.8);
-        }
-
-        .btn-small {
-            font-size: 0.75rem;
-            padding: 0.5rem 1rem;
-        }
-
-        /* Main Content */
-        main {
-            margin-top: 80px;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-        }
-
-        /* Products Table */
-        .products-section {
-            background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(15, 23, 42) 100%);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid rgba(236, 72, 153, 0.2);
-            font-weight: 600;
-        }
-
-        td {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(236, 72, 153, 0.1);
-        }
-
-        tr:hover {
-            background: rgba(236, 72, 153, 0.05);
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: #9ca3af;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(15, 23, 42) 100%);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.75rem;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #f5e6ff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(236, 72, 153, 0.3);
-            border-radius: 0.5rem;
-            color: #f5e6ff;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 100px;
-            transition: border-color 0.3s;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: rgba(236, 72, 153, 0.8);
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.2);
-        }
-
-        .form-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 2rem;
-        }
-
-        .form-actions .btn-header {
-            padding: 0.75rem 1.5rem;
-        }
-
-        /* Alert */
-        .alert-admin {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .alert-admin.active {
-            display: block;
-        }
-
-        .alert-success {
-            background: rgba(34, 211, 238, 0.2);
-            border: 1px solid rgba(34, 211, 238, 0.5);
-            color: #22d3ee;
-        }
-
-        .alert-error {
-            background: rgba(220, 38, 38, 0.2);
-            border: 1px solid rgba(220, 38, 38, 0.5);
-            color: #ff6b6b;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .loading.active {
-            display: block;
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
-            border: 3px solid rgba(34, 211, 238, 0.3);
-            border-top-color: #22d3ee;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @media (max-width: 768px) {
-            table {
-                font-size: 0.875rem;
-            }
-
-            th, td {
-                padding: 0.5rem;
-            }
-
-            .product-actions {
-                flex-direction: column;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 1rem;
-            }
-
-            .login-box {
-                padding: 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body class="grid-background">
-    <!-- LOGIN FORM -->
-    <div id="loginForm" class="login-container">
-        <div class="login-box">
-            <div class="login-logo">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-            </div>
-            <h2 class="login-title">promo tech</h2>
-            <p class="login-subtitle">Área Administrativa</p>
-            
-            <div class="alert alert-error" id="loginAlert"></div>
-
-            <form onsubmit="checkPassword(event)">
-                <div class="form-group">
-                    <label for="password">Senha de Acesso</label>
-                    <input type="password" id="password" placeholder="Digite a senha" required autofocus>
-                </div>
-                <button type="submit" class="btn">Entrar</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ADMIN CONTENT -->
-    <div id="adminContent">
-        <!-- Header -->
-        <header>
-            <div class="header-content">
-                <div class="logo">
-                    <svg class="logo-icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                    </svg>
-                    <span class="neon-text">promo tech - ADMIN</span>
-                </div>
-
-                <div class="header-buttons">
-                    <a href="index.html" class="btn-header btn-secondary btn-small">Voltar</a>
-                    <button class="btn-header btn-logout btn-small" onclick="logout()">Sair</button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            <div class="container">
-                <h1 class="page-title">Gerenciador de Produtos</h1>
-
-                <!-- Alert -->
-                <div class="alert alert-admin" id="alert"></div>
-
-                <!-- Products Section -->
-                <div class="products-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Produtos Cadastrados</h2>
-                        <button class="btn-header btn-neon btn-small" onclick="openAddModal()">+ Novo Produto</button>
-                    </div>
-
-                    <div class="loading" id="loading">
-                        <div class="spinner"></div>
-                    </div>
-
-                    <table id="productsTable" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Preço</th>
-                                <th>Imagem</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsBody">
-                        </tbody>
-                    </table>
-
-                    <div class="empty-state" id="emptyState" style="display: none;">
-                        <p>Nenhum produto cadastrado. Clique em "+ Novo Produto" para começar.</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        <!-- Modal -->
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="modalTitle">Novo Produto</h2>
-                    <button class="close-btn" onclick="closeModal()">&times;</button>
-                </div>
-
-                <form id="productForm" onsubmit="saveProduct(event)">
-                    <div class="form-group">
-                        <label for="name">Nome do Produto *</label>
-                        <input type="text" id="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="price">Preço (R$) *</label>
-                        <input type="number" id="price" step="0.01" required>
-                    </div>
-
-                    <div class="form-group">
-    <label for="imageFile">Imagem do Produto *</label>
-    <input type="file" id="imageFile" accept="image/*" required>
-</div>
-
-
-                    <div class="form-group">
-                        <label for="affiliateLink">Link de Afiliado *</label>
-                        <input type="url" id="affiliateLink" required>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="button" class="btn-header btn-secondary" onclick="closeModal()">Cancelar</button>
-                        <button type="submit" class="btn-header btn-neon">Salvar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let currentEditId = null;
-
-        // Verificar autenticação ao carregar
-        window.addEventListener('load', function() {
-            if (sessionStorage.getItem('adminAuthenticated') === 'true') {
-                showAdmin();
-            }
-        });
-
-        // Verificar senha
-        function checkPassword(event) {
-            event.preventDefault();
-            const password = document.getElementById('password').value;
-            
-            // Senha configurada
-            const correctPassword = 'vendas986';
-
-            if (password === correctPassword) {
-                sessionStorage.setItem('adminAuthenticated', 'true');
-                showAdmin();
-            } else {
-                const alert = document.getElementById('loginAlert');
-                alert.textContent = '❌ Senha incorreta! Tente novamente.';
-                alert.classList.add('active');
-                document.getElementById('password').value = '';
-                setTimeout(() => alert.classList.remove('active'), 3000);
-            }
-        }
-
-        // Mostrar painel admin
-        function showAdmin() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('adminContent').style.display = 'block';
-            loadProducts();
-        }
-
-        // Fazer logout
-        function logout() {
-            if (confirm('Tem certeza que deseja sair?')) {
-                sessionStorage.removeItem('adminAuthenticated');
-                document.getElementById('adminContent').style.display = 'none';
-                document.getElementById('loginForm').style.display = 'flex';
-                document.getElementById('password').value = '';
-                document.getElementById('password').focus();
-            }
-        }
-
-        // Carregar produtos do localStorage
-        function loadProducts() {
-            const loading = document.getElementById('loading');
-            const table = document.getElementById('productsTable');
-            const tbody = document.getElementById('productsBody');
-            const emptyState = document.getElementById('emptyState');
-
-            loading.classList.add('active');
-
-            setTimeout(() => {
-                try {
-                    const productsJSON = localStorage.getItem('products');
-                    const products = productsJSON ? JSON.parse(productsJSON) : [];
-
-                    loading.classList.remove('active');
-
-                    if (!products || products.length === 0) {
-                        table.style.display = 'none';
-                        emptyState.style.display = 'block';
-                        return;
-                    }
-
-                    table.style.display = 'table';
-                    emptyState.style.display = 'none';
-
-                    tbody.innerHTML = products.map(product => `
-                        <tr>
-                            <td>${product.name}</td>
-                            <td>R$ ${parseFloat(product.price).toFixed(2)}</td>
-                            <td><img src="${product.imageUrl}" alt="${product.name}" style="max-width: 60px; max-height: 60px; border-radius: 4px;"></td>
-                            <td>
-                                <div class="product-actions">
-                                    <button class="btn-header btn-neon btn-small" onclick="editProduct('${product.id}')">Editar</button>
-                                    <button class="btn-header btn-danger" onclick="deleteProduct('${product.id}')">Deletar</button>
-                                </div>
-                            </td>
-                        </tr>
-                    `).join('');
-                } catch (error) {
-                    console.error('Erro ao carregar produtos:', error);
-                    loading.classList.remove('active');
-                    showAlert('Erro ao carregar produtos', 'error');
-                }
-            }, 500);
-        }
-
-        // Abrir modal para novo produto
-        function openAddModal() {
-            currentEditId = null;
-            document.getElementById('modalTitle').textContent = 'Novo Produto';
-            document.getElementById('productForm').reset();
-            document.getElementById('modal').classList.add('active');
-        }
-
-        // Editar produto
-        function editProduct(id) {
-            const productsJSON = localStorage.getItem('products');
-            const products = productsJSON ? JSON.parse(productsJSON) : [];
-            const product = products.find(p => p.id === id);
-
-            if (product) {
-                currentEditId = id;
-                document.getElementById('modalTitle').textContent = 'Editar Produto';
-                document.getElementById('name').value = product.name;
-                document.getElementById('price').value = product.price;
-                document.getElementById('imageUrl').value = product.imageUrl;
-                document.getElementById('affiliateLink').value = product.affiliateLink;
-                document.getElementById('modal').classList.add('active');
-            }
-        }
-
-        // Salvar produto
-        function saveProduct(event) {
-    event.preventDefault();
-
-    const file = document.getElementById('imageFile').files[0];
-
-    if (!file) {
-        alert('Selecione uma imagem!');
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        const data = {
-            id: currentEditId || Date.now().toString(),
-            name: document.getElementById('name').value,
-            price: document.getElementById('price').value,
-            imageUrl: e.target.result,
-            affiliateLink: document.getElementById('affiliateLink').value
-        };
-
-        let products = JSON.parse(localStorage.getItem('products')) || [];
-
-        if (currentEditId) {
-            const index = products.findIndex(p => p.id === currentEditId);
-            if (index !== -1) {
-                products[index] = data;
-            }
-        } else {
-            products.push(data);
-        }
-
-        localStorage.setItem('products', JSON.stringify(products));
-
-        showAlert(
-            currentEditId ? 'Produto atualizado com sucesso!' : 'Produto criado com sucesso!',
-            'success'
-        );
-
-        closeModal();
-        loadProducts();
-    };
-
-    reader.readAsDataURL(file);
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - PromoTechBR</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-        // Deletar produto
-        function deleteProduct(id) {
-            if (!confirm('Tem certeza que deseja deletar este produto?')) return;
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+padding:20px;
+}
 
-            try {
-                let products = [];
-                const productsJSON = localStorage.getItem('products');
-                if (productsJSON) {
-                    products = JSON.parse(productsJSON);
-                }
+.container{
+max-width:1000px;
+margin:auto;
+}
 
-                products = products.filter(p => p.id !== id);
-                localStorage.setItem('products', JSON.stringify(products));
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
 
-                showAlert('Produto deletado com sucesso!', 'success');
-                loadProducts();
-            } catch (error) {
-                console.error('Erro:', error);
-                showAlert('Erro ao deletar produto', 'error');
-            }
-        }
+input,textarea{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+}
 
-        // Fechar modal
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-            currentEditId = null;
-        }
+button{
+padding:12px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
 
-        // Mostrar alerta
-        function showAlert(message, type) {
-            const alert = document.getElementById('alert');
-            alert.textContent = message;
-            alert.className = `alert alert-admin active alert-${type}`;
-            setTimeout(() => alert.classList.remove('active'), 3000);
-        }
-    </script>
+.btn{
+background:#fbbf24;
+color:black;
+width:100%;
+}
+
+.btn-delete{
+background:red;
+color:white;
+}
+
+.product{
+background:#334155;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+}
+
+img{
+max-width:100px;
+border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<div id="login" class="card">
+<h2>Login Admin</h2>
+
+<input
+type="password"
+id="password"
+placeholder="Senha">
+
+<button
+class="btn"
+onclick="login()">
+Entrar
+</button>
+</div>
+
+<div
+id="adminPanel"
+style="display:none;">
+
+<div class="card">
+
+<h2>Novo Produto</h2>
+
+<input
+type="text"
+id="name"
+placeholder="Nome do produto">
+
+<input
+type="number"
+id="price"
+placeholder="Preço">
+
+<input
+type="file"
+id="imageFile"
+accept="image/*">
+
+<input
+type="url"
+id="affiliateLink"
+placeholder="Link de afiliado">
+
+<button
+class="btn"
+onclick="saveProduct()">
+Salvar Produto
+</button>
+
+</div>
+
+<div class="card">
+<h2>Produtos Cadastrados</h2>
+
+<div id="products"></div>
+</div>
+
+<div class="card">
+<h2>Avaliações da Loja</h2>
+
+<div id="reviews"></div>
+</div>
+
+</div>
+
+<script>
+
+const ADMIN_PASSWORD = "vendas986";
+
+function login(){
+
+const password =
+document.getElementById("password").value;
+
+if(password === ADMIN_PASSWORD){
+
+document.getElementById("login").style.display="none";
+document.getElementById("adminPanel").style.display="block";
+
+loadProducts();
+loadReviews();
+
+}else{
+
+alert("Senha incorreta");
+
+}
+
+}
+
+function saveProduct(){
+
+const file =
+document.getElementById("imageFile").files[0];
+
+if(!file){
+alert("Selecione uma imagem");
+return;
+}
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+const products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+products.push({
+id: Date.now(),
+name: document.getElementById("name").value,
+price: document.getElementById("price").value,
+imageUrl: e.target.result,
+affiliateLink:
+document.getElementById("affiliateLink").value
+});
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+loadProducts();
+
+alert("Produto salvo");
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+function loadProducts(){
+
+const products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+document.getElementById("products").innerHTML =
+products.map(product => `
+
+<div class="product">
+
+<img src="${product.imageUrl}">
+
+<h3>${product.name}</h3>
+
+<p>R$ ${product.price}</p>
+
+<button
+class="btn-delete"
+onclick="deleteProduct(${product.id})">
+Excluir
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+function deleteProduct(id){
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+products =
+products.filter(
+product => product.id !== id
+);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+loadProducts();
+
+}
+
+function loadReviews(){
+
+const reviews =
+JSON.parse(localStorage.getItem("siteReviews")) || [];
+
+document.getElementById("reviews").innerHTML =
+reviews.map((review,index)=>`
+
+<div class="product">
+
+<p>${"⭐".repeat(review.stars)}</p>
+
+<p>${review.comment}</p>
+
+<button
+class="btn-delete"
+onclick="deleteReview(${index})">
+Excluir Avaliação
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+function deleteReview(index){
+
+let reviews =
+JSON.parse(localStorage.getItem("siteReviews")) || [];
+
+reviews.splice(index,1);
+
+localStorage.setItem(
+"siteReviews",
+JSON.stringify(reviews)
+);
+
+loadReviews();
+
+}
+
+</script>
+
 </body>
 </html>
