@@ -107,24 +107,6 @@ type="number"
 id="price"
 placeholder="Preço">
 
-<select id="category" style="width:100%;padding:10px;margin-top:10px;border:none;border-radius:8px;">
-<option value="eletronicos">📱 Eletrônicos</option>
-<option value="casa">🏠 Casa e Cozinha</option>
-<option value="informatica">💻 Informática</option>
-<option value="games">🎮 Games</option>
-<option value="moda">👕 Moda</option>
-<option value="beleza">💄 Beleza</option>
-<option value="saude">❤️ Saúde</option>
-<option value="esportes">⚽ Esportes</option>
-<option value="automotivo">🚗 Automotivo</option>
-<option value="ferramentas">🔧 Ferramentas</option>
-<option value="petshop">🐶 Pet Shop</option>
-<option value="brinquedos">🧸 Brinquedos</option>
-<option value="livros">📚 Livros</option>
-<option value="bebe">👶 Bebê</option>
-<option value="papelaria">✏️ Papelaria</option>
-</select>
-
 <input
 type="file"
 id="imageFile"
@@ -203,7 +185,6 @@ products.push({
 id: Date.now(),
 name: document.getElementById("name").value,
 price: document.getElementById("price").value,
-category: document.getElementById("category").value,
 imageUrl: e.target.result,
 affiliateLink:
 document.getElementById("affiliateLink").value
@@ -246,6 +227,12 @@ onclick="deleteProduct(${product.id})">
 Excluir
 </button>
 
+<button
+class="btn"
+onclick="editProduct(${product.id})">
+Editar
+</button>
+
 </div>
 
 `).join("");
@@ -268,6 +255,45 @@ JSON.stringify(products)
 );
 
 loadProducts();
+
+}
+
+
+function editProduct(id){
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+const product =
+products.find(p => p.id === id);
+
+if(!product) return;
+
+const novoNome =
+prompt("Nome:", product.name);
+
+const novoPreco =
+prompt("Preço:", product.price);
+
+const novaCategoria =
+prompt("Categoria:", product.category || "eletronicos");
+
+const novoLink =
+prompt("Link de afiliado:", product.affiliateLink);
+
+product.name = novoNome;
+product.price = novoPreco;
+product.category = novaCategoria;
+product.affiliateLink = novoLink;
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+loadProducts();
+
+alert("Produto atualizado!");
 
 }
 
