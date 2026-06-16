@@ -197,10 +197,44 @@ display:none;
 }
 
 }
+
+#menuBtn{
+position:fixed;top:80px;left:15px;z-index:1000;background:#ec4899;color:#fff;
+border:none;padding:10px 15px;border-radius:8px;cursor:pointer;
+}
+.menu-categorias{
+display:none;position:fixed;top:130px;left:15px;background:#111827;
+padding:10px;border-radius:10px;z-index:1000;max-height:70vh;overflow-y:auto;
+}
+.menu-categorias a{display:block;color:white;text-decoration:none;padding:8px;}
+.menu-categorias a:hover{background:#ec4899;border-radius:6px;}
+
 </style>
 </head>
 
 <body>
+
+<button id="menuBtn" onclick="toggleMenu()">☰ Categorias</button>
+
+<nav id="menuCategorias" class="menu-categorias">
+<a href="#" onclick="filtrarCategoria('todos')">🛍️ Todos</a>
+<a href="#" onclick="filtrarCategoria('eletronicos')">📱 Eletrônicos</a>
+<a href="#" onclick="filtrarCategoria('casa')">🏠 Casa e Cozinha</a>
+<a href="#" onclick="filtrarCategoria('informatica')">💻 Informática</a>
+<a href="#" onclick="filtrarCategoria('games')">🎮 Games</a>
+<a href="#" onclick="filtrarCategoria('moda')">👕 Moda</a>
+<a href="#" onclick="filtrarCategoria('beleza')">💄 Beleza</a>
+<a href="#" onclick="filtrarCategoria('saude')">❤️ Saúde</a>
+<a href="#" onclick="filtrarCategoria('esportes')">⚽ Esportes</a>
+<a href="#" onclick="filtrarCategoria('automotivo')">🚗 Automotivo</a>
+<a href="#" onclick="filtrarCategoria('ferramentas')">🔧 Ferramentas</a>
+<a href="#" onclick="filtrarCategoria('petshop')">🐶 Pet Shop</a>
+<a href="#" onclick="filtrarCategoria('brinquedos')">🧸 Brinquedos</a>
+<a href="#" onclick="filtrarCategoria('livros')">📚 Livros</a>
+<a href="#" onclick="filtrarCategoria('bebe')">👶 Bebê</a>
+<a href="#" onclick="filtrarCategoria('papelaria')">✏️ Papelaria</a>
+</nav>
+
 
 <header>
 
@@ -471,6 +505,15 @@ ${review.comment}
 
 `).join("");
 
+}
+
+
+function toggleMenu(){
+const menu=document.getElementById('menuCategorias');
+menu.style.display=menu.style.display==='block'?'none':'block';
+}
+function filtrarCategoria(categoria){
+alert('Para usar filtros, adicione o campo category aos produtos no admin.html.');
 }
 
 loadProducts();
