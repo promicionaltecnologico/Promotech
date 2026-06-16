@@ -367,70 +367,39 @@ Enviar Avaliação
 
 <script>
 
-function loadProducts(){
+async function loadProducts(){
 
-const products =
-JSON.parse(
-localStorage.getItem("products")
-) || [];
+const snap = await getDocs(collection(db,"products"));
 
-const container =
-document.getElementById("productsGrid");
+const container=document.getElementById("productsGrid");
+const emptyState=document.getElementById("emptyState");
 
-const emptyState =
-document.getElementById("emptyState");
+let products=[];
 
-if(products.length === 0){
+snap.forEach(item=>{
+products.push(item.data());
+});
 
-emptyState.style.display = "block";
-
-container.innerHTML = "";
-
+if(products.length===0){
+emptyState.style.display="block";
+container.innerHTML="";
 return;
-
 }
 
-emptyState.style.display = "none";
+emptyState.style.display="none";
 
-container.innerHTML = products.map(product => `
-
+container.innerHTML=products.map(product=>`
 <div class="product-card">
-
 <div class="product-image">
-
-<img
-src="${product.imageUrl || product.image}"
-alt="${product.name}">
-
+<img src="${product.imageUrl}" alt="${product.name}">
 </div>
-
-<h3 class="product-name">
-${product.name}
-</h3>
-
-<p class="product-desc">
-${product.description || ""}
-</p>
-
+<h3 class="product-name">${product.name}</h3>
+<p class="product-desc">${product.description || ""}</p>
 <div class="product-footer">
-
-<span class="product-price">
-R$ ${Number(product.price).toFixed(2)}
-</span>
-
-<a
-href="${product.affiliateLink}"
-target="_blank"
-class="btn">
-
-Ver Oferta
-
-</a>
-
+<span class="product-price">R$ ${Number(product.price).toFixed(2)}</span>
+<a href="${product.affiliateLink}" target="_blank" class="btn">Ver Oferta</a>
 </div>
-
 </div>
-
 `).join("");
 
 }
@@ -516,9 +485,33 @@ function filtrarCategoria(categoria){
 alert('Para usar filtros, adicione o campo category aos produtos no admin.html.');
 }
 
-loadProducts();
 renderReviews();
 
+</script>
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore,collection,getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyBYxwVTgxvhCd_HX5TCYrmApabcA0QcheI",
+authDomain:"promo-shopeebr.firebaseapp.com",
+projectId:"promo-shopeebr",
+storageBucket:"promo-shopeebr.firebasestorage.app",
+messagingSenderId:"58982670650",
+appId:"1:58982670650:web:db7743800ef97e1ef7b003",
+measurementId:"G-ZHGMD1VS2F"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+
+window.collection=collection;
+window.getDocs=getDocs;
+window.db=db;
+
+loadProducts();
 </script>
 
 </body>
