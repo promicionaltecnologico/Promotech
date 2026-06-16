@@ -6,11 +6,7 @@
 <title>Admin - PromoShopeeBR</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:Arial,sans-serif;
@@ -31,7 +27,7 @@ border-radius:12px;
 margin-bottom:20px;
 }
 
-input,textarea{
+input,textarea,select{
 width:100%;
 padding:10px;
 margin-top:10px;
@@ -75,65 +71,58 @@ border-radius:8px;
 <body>
 
 <div id="login" class="card">
+
 <h2>Login Admin</h2>
 
-<input
-type="password"
-id="password"
-placeholder="Senha">
+<input type="password" id="password" placeholder="Senha">
 
-<button
-class="btn"
-onclick="login()">
-Entrar
-</button>
+<button class="btn" onclick="login()">Entrar</button>
+
 </div>
 
-<div
-id="adminPanel"
-style="display:none;">
+<div id="adminPanel" style="display:none;">
 
 <div class="card">
 
 <h2>Novo Produto</h2>
 
-<input
-type="text"
-id="name"
-placeholder="Nome do produto">
+<input type="text" id="name" placeholder="Nome do produto">
 
-<input
-type="number"
-id="price"
-placeholder="Preço">
+<input type="number" id="price" placeholder="Preço">
 
-<input
-type="file"
-id="imageFile"
-accept="image/*">
+<select id="category">
+<option value="eletronicos">📱 Eletrônicos</option>
+<option value="casa">🏠 Casa e Cozinha</option>
+<option value="informatica">💻 Informática</option>
+<option value="games">🎮 Games</option>
+<option value="moda">👕 Moda</option>
+<option value="beleza">💄 Beleza</option>
+<option value="saude">❤️ Saúde</option>
+<option value="esportes">⚽ Esportes</option>
+<option value="automotivo">🚗 Automotivo</option>
+<option value="ferramentas">🔧 Ferramentas</option>
+<option value="petshop">🐶 Pet Shop</option>
+<option value="brinquedos">🧸 Brinquedos</option>
+<option value="livros">📚 Livros</option>
+<option value="bebe">👶 Bebê</option>
+<option value="papelaria">✏️ Papelaria</option>
+</select>
 
-<input
-type="url"
-id="affiliateLink"
-placeholder="Link de afiliado">
+<input type="file" id="imageFile" accept="image/*">
 
-<button
-class="btn"
-onclick="saveProduct()">
-Salvar Produto
-</button>
+<input type="url" id="affiliateLink" placeholder="Link de afiliado">
+
+<button class="btn" onclick="saveProduct()">Salvar Produto</button>
 
 </div>
 
 <div class="card">
 <h2>Produtos Cadastrados</h2>
-
 <div id="products"></div>
 </div>
 
 <div class="card">
 <h2>Avaliações da Loja</h2>
-
 <div id="reviews"></div>
 </div>
 
@@ -141,14 +130,13 @@ Salvar Produto
 
 <script>
 
-const ADMIN_PASSWORD = "vendas986";
+const ADMIN_PASSWORD="vendas986";
 
 function login(){
 
-const password =
-document.getElementById("password").value;
+const password=document.getElementById("password").value;
 
-if(password === ADMIN_PASSWORD){
+if(password===ADMIN_PASSWORD){
 
 document.getElementById("login").style.display="none";
 document.getElementById("adminPanel").style.display="block";
@@ -164,146 +152,19 @@ alert("Senha incorreta");
 
 }
 
-function saveProduct(){
+function saveProduct(){}
 
-const file =
-document.getElementById("imageFile").files[0];
+function loadProducts(){}
 
-if(!file){
-alert("Selecione uma imagem");
-return;
-}
+function editProduct(id){}
 
-const reader = new FileReader();
-
-reader.onload = function(e){
-
-const products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-products.push({
-id: Date.now(),
-name: document.getElementById("name").value,
-price: document.getElementById("price").value,
-imageUrl: e.target.result,
-affiliateLink:
-document.getElementById("affiliateLink").value
-});
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
-loadProducts();
-
-alert("Produto salvo");
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-function loadProducts(){
-
-const products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-document.getElementById("products").innerHTML =
-products.map(product => `
-
-<div class="product">
-
-<img src="${product.imageUrl}">
-
-<h3>${product.name}</h3>
-
-<p>R$ ${product.price}</p>
-
-<button
-class="btn-delete"
-onclick="deleteProduct(${product.id})">
-Excluir
-</button>
-
-<button
-class="btn"
-onclick="editProduct(${product.id})">
-Editar
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-function deleteProduct(id){
-
-let products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-products =
-products.filter(
-product => product.id !== id
-);
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
-loadProducts();
-
-}
-
-
-function editProduct(id){
-
-let products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-const product =
-products.find(p => p.id === id);
-
-if(!product) return;
-
-const novoNome =
-prompt("Nome:", product.name);
-
-const novoPreco =
-prompt("Preço:", product.price);
-
-const novaCategoria =
-prompt("Categoria:", product.category || "eletronicos");
-
-const novoLink =
-prompt("Link de afiliado:", product.affiliateLink);
-
-product.name = novoNome;
-product.price = novoPreco;
-product.category = novaCategoria;
-product.affiliateLink = novoLink;
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
-loadProducts();
-
-alert("Produto atualizado!");
-
-}
+function deleteProduct(id){}
 
 function loadReviews(){
 
-const reviews =
-JSON.parse(localStorage.getItem("siteReviews")) || [];
+const reviews=JSON.parse(localStorage.getItem("siteReviews")) || [];
 
-document.getElementById("reviews").innerHTML =
-reviews.map((review,index)=>`
+document.getElementById("reviews").innerHTML=reviews.map((review,index)=>`
 
 <div class="product">
 
@@ -311,11 +172,7 @@ reviews.map((review,index)=>`
 
 <p>${review.comment}</p>
 
-<button
-class="btn-delete"
-onclick="deleteReview(${index})">
-Excluir Avaliação
-</button>
+<button class="btn-delete" onclick="deleteReview(${index})">Excluir Avaliação</button>
 
 </div>
 
@@ -325,18 +182,93 @@ Excluir Avaliação
 
 function deleteReview(index){
 
-let reviews =
-JSON.parse(localStorage.getItem("siteReviews")) || [];
+let reviews=JSON.parse(localStorage.getItem("siteReviews")) || [];
 
 reviews.splice(index,1);
 
-localStorage.setItem(
-"siteReviews",
-JSON.stringify(reviews)
-);
+localStorage.setItem("siteReviews",JSON.stringify(reviews));
 
 loadReviews();
 
+}
+
+</script>
+
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYxwVTgxvhCd_HX5TCYrmApabcA0QcheI",
+  authDomain: "promo-shopeebr.firebaseapp.com",
+  projectId: "promo-shopeebr",
+  storageBucket: "promo-shopeebr.firebasestorage.app",
+  messagingSenderId: "58982670650",
+  appId: "1:58982670650:web:db7743800ef97e1ef7b003",
+  measurementId: "G-ZHGMD1VS2F"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+window.db = getFirestore(app);
+
+
+
+window.saveProduct = async function(){
+const file=document.getElementById("imageFile").files[0];
+if(!file){alert("Selecione uma imagem");return;}
+const reader=new FileReader();
+reader.onload=async function(e){
+await addDoc(collection(window.db,"products"),{
+name:document.getElementById("name").value,
+price:document.getElementById("price").value,
+category:document.getElementById("category").value,
+imageUrl:e.target.result,
+affiliateLink:document.getElementById("affiliateLink").value
+});
+loadProducts();
+alert("Produto salvo.");
+};
+reader.readAsDataURL(file);
+}
+
+window.loadProducts = async function(){
+const snap=await getDocs(collection(window.db,"products"));
+let html="";
+snap.forEach(item=>{
+const product=item.data();
+html+=`<div class="product">
+<img src="${product.imageUrl}">
+<h3>${product.name}</h3>
+<p>R$ ${product.price}</p>
+<p>${product.category||""}</p>
+<button class="btn-delete" onclick="deleteProduct('${item.id}')">Excluir</button>
+<button class="btn" onclick="editProduct('${item.id}')">Editar</button>
+</div>`;
+});
+document.getElementById("products").innerHTML=html;
+}
+
+window.deleteProduct=async function(id){
+await deleteDoc(doc(window.db,'products',id));
+loadProducts();
+}
+
+window.editProduct=async function(id){
+const snap=await getDocs(collection(window.db,'products'));
+let produto=null;
+snap.forEach(x=>{if(x.id===id) produto=x.data();});
+if(!produto) return;
+await updateDoc(doc(window.db,'products',id),{
+name:prompt('Nome:',produto.name),
+price:prompt('Preço:',produto.price),
+category:prompt('Categoria:',produto.category),
+affiliateLink:prompt('Link:',produto.affiliateLink)
+});
+loadProducts();
 }
 
 </script>
