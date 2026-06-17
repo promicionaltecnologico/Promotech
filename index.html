@@ -367,28 +367,41 @@ Enviar Avaliação
 
 <script>
 
+let todosProdutos=[];
+
 async function loadProducts(){
 
-const snap = await getDocs(collection(db,"products"));
+const snap=await getDocs(collection(db,"products"));
+
+todosProdutos=[];
+
+snap.forEach(item=>{
+
+todosProdutos.push({
+id:item.id,
+...item.data()
+});
+
+});
+
+renderizarProdutos(todosProdutos);
+
+}
+
+function renderizarProdutos(lista){
 
 const container=document.getElementById("productsGrid");
 const emptyState=document.getElementById("emptyState");
 
-let products=[];
-
-snap.forEach(item=>{
-products.push(item.data());
-});
-
-if(products.length===0){
+if(lista.length===0){
 emptyState.style.display="block";
-container.innerHTML="";
+container.innerHTML="Nenhum produto encontrado.";
 return;
 }
 
 emptyState.style.display="none";
 
-container.innerHTML=products.map(product=>`
+container.innerHTML=lista.map(product=>`
 <div class="product-card">
 <div class="product-image">
 <img src="${product.imageUrl}" alt="${product.name}">
@@ -482,8 +495,18 @@ const menu=document.getElementById('menuCategorias');
 menu.style.display=menu.style.display==='block'?'none':'block';
 }
 function filtrarCategoria(categoria){
-alert('Para usar filtros, adicione o campo category aos produtos no admin.html.');
+
+if(categoria==='todos'){
+renderizarProdutos(todosProdutos);
+return;
 }
+
+const filtrados=todosProdutos.filter(produto=>(produto.category||'').toLowerCase().trim()===categoria.toLowerCase().trim());
+
+renderizarProdutos(filtrados);
+
+}
+
 
 renderReviews();
 
