@@ -214,7 +214,7 @@ padding:10px;border-radius:10px;z-index:1000;max-height:70vh;overflow-y:auto;
 
 <body>
 
-<button id="menuBtn" onclick="toggleMenu()">☰</button>
+<button id="menuBtn" onclick="toggleMenu()">☰ Categorias</button>
 
 <nav id="menuCategorias" class="menu-categorias">
 <a href="#" onclick="filtrarCategoria('todos')">🛍️ Todos</a>
@@ -367,8 +367,6 @@ Enviar Avaliação
 
 <script>
 
-let todosProdutos=[];
-
 async function loadProducts(){
 
 const snap = await getDocs(collection(db,"products"));
@@ -376,27 +374,21 @@ const snap = await getDocs(collection(db,"products"));
 const container=document.getElementById("productsGrid");
 const emptyState=document.getElementById("emptyState");
 
-todosProdutos=[];
+let products=[];
 
 snap.forEach(item=>{
- todosProdutos.push({id:item.id,...item.data()});
+products.push(item.data());
 });
 
-renderizarProdutos(todosProdutos);
-return;
-}
-
-function renderizarProdutos(lista){
-
-if(lista.length===0){
+if(products.length===0){
 emptyState.style.display="block";
-container.innerHTML="<div class="product-card">Nenhum produto encontrado.</div>";
+container.innerHTML="";
 return;
 }
 
 emptyState.style.display="none";
 
-container.innerHTML=lista.map(product=>`
+container.innerHTML=products.map(product=>`
 <div class="product-card">
 <div class="product-image">
 <img src="${product.imageUrl}" alt="${product.name}">
@@ -411,7 +403,6 @@ container.innerHTML=lista.map(product=>`
 `).join("");
 
 }
-
 
 function saveReview(){
 
@@ -491,18 +482,7 @@ const menu=document.getElementById('menuCategorias');
 menu.style.display=menu.style.display==='block'?'none':'block';
 }
 function filtrarCategoria(categoria){
-
-if(categoria==='todos'){
-renderizarProdutos(todosProdutos);
-return;
-}
-
-const filtrados=todosProdutos.filter(product=>product.category===categoria);
-
-renderizarProdutos(filtrados);
-
-document.getElementById('produtos').scrollIntoView({behavior:'smooth'});
-
+alert('Para usar filtros, adicione o campo category aos produtos no admin.html.');
 }
 
 renderReviews();
